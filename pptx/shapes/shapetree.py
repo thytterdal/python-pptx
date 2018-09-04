@@ -490,7 +490,7 @@ class SlideShapes(_BaseGroupShapes):
         self._add_video_timing(movie_pic)
         return self._shape_factory(movie_pic)
 
-    def add_table(self, rows, cols, left, top, width, height):
+    def add_table(self, rows, cols, left, top, width, height, tableStyleId=None):
         """
         Add a |GraphicFrame| object containing a table with the specified
         number of *rows* and *cols* and the specified position and size.
@@ -500,7 +500,7 @@ class SlideShapes(_BaseGroupShapes):
         used to access the enclosed |Table| object.
         """
         graphicFrame = self._add_graphicFrame_containing_table(
-            rows, cols, left, top, width, height
+            rows, cols, left, top, width, height, tableStyleId
         )
         graphic_frame = self._shape_factory(graphicFrame)
         return graphic_frame
@@ -533,7 +533,7 @@ class SlideShapes(_BaseGroupShapes):
                 return self._shape_factory(elm)
         return None
 
-    def _add_graphicFrame_containing_table(self, rows, cols, x, y, cx, cy):
+    def _add_graphicFrame_containing_table(self, rows, cols, x, y, cx, cy, tableStyleId=None):
         """
         Return a newly added ``<p:graphicFrame>`` element containing a table
         as specified by the parameters.
@@ -541,7 +541,7 @@ class SlideShapes(_BaseGroupShapes):
         _id = self._next_shape_id
         name = 'Table %d' % (_id-1)
         graphicFrame = self._spTree.add_table(
-            _id, name, rows, cols, x, y, cx, cy
+            _id, name, rows, cols, x, y, cx, cy, tableStyleId
         )
         return graphicFrame
 
